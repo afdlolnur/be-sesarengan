@@ -19,7 +19,7 @@ class CreateComplaintsTable extends Migration
             $table->integer('user_id')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->text('picturePath')->nullable();
+            $table->text('picture_path')->nullable();
             $table->text('location')->nullable();
             $table->string('is_public')->nullable();
             $table->string('is_secret')->nullable();
