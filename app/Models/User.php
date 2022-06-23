@@ -68,7 +68,7 @@ class User extends Authenticatable
     // }
 
     //asesor updated at ~afd
-    public function getUpdatedAttribute($svalue)
+    // public function getUpdatedAttribute($svalue)
     // {
     //     return Carbon::parse($value)->timestamp;
     // }
