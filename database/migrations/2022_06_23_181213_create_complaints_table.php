@@ -21,9 +21,10 @@ class CreateComplaintsTable extends Migration
             $table->text('description')->nullable();
             $table->text('picture_path')->nullable();
             $table->text('location')->nullable();
+            $table->string('district')->nullable();
             $table->string('is_public')->nullable();
-            $table->string('is_secret')->nullable();
-            
+            $table->string('is_anon')->nullable();
+            $table->string('caption')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

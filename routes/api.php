@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\ComplaintController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    //disini route yang harus login dulu
+    Route::get('user', [UserController::class, 'fetch']);
+    // Route::post('user', [UserController::class, 'updateProfile']);
+    // Route::post('user/photo', [UserController::class, 'updatePhoto']);
+    Route::post('complaint', [ComplaintController::class, 'complaint']);
+    Route::post('logout', [UserController::class, 'logout']);
 });
+
+//ini kan tidak perlu auth
+Route::post('login', [UserController::class, 'login']);
+Route::post('register', [UserController::class, 'register']);
+
+

@@ -6,10 +6,12 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+
 
 class Complaint extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'user_id',
@@ -17,8 +19,11 @@ class Complaint extends Model
         'description',
         'picture_path',
         'location',
+        'district',
         'is_public',
-        'is_secret'
+        'is_anon',
+        'caption'
+
     ];
 
     public function user()
