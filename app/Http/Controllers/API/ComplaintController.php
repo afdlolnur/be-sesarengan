@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ComplaintController extends Controller
 {
+    // post aduan
     public function complaint(Request $request)
     {
         $request->validate([
@@ -51,5 +52,45 @@ class ComplaintController extends Controller
             // Mengembalikan data ke API
             return ResponseFormatter::error($e->getMessage(), 'Laporan Gagal Disimpan');
         }
+    }
+
+    //get list of aduan/complaint
+    public function all(Request $request)
+    {
+        // $id = $request->input('id');
+        $limit = $request->input('limit', 10);
+        // $complaint_id = $request->input('complaint_id');
+        // $status = $request->input('status');
+
+        // if($id)
+        // {
+        //     $complaint = Complaint::with(['user'])->find($id);
+
+        //     if($complaint)
+        //         return ResponseFormatter::success(
+        //             $complaint,
+        //             'Data aduan berhasil diambil'
+        //         );
+        //     else
+        //         return ResponseFormatter::error(
+        //             null,
+        //             'Data aduan tidak ada',
+        //             404
+        //         );
+        // }
+
+        // $complaint = Complaint::with(['user'])->where('user_id', Auth::user()->id);
+        $complaint = Complaint::query();
+
+        // if($food_id)
+        //     $complaint->where('food_id', $food_id);
+
+        // if($status)
+        //     $complaint->where('status', $status);
+
+        return ResponseFormatter::success(
+            $complaint->paginate($limit),
+            'Data list aduan berhasil diambil'
+        );
     }
 }

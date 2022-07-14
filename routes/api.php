@@ -25,6 +25,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Route::post('user', [UserController::class, 'updateProfile']);
     // Route::post('user/photo', [UserController::class, 'updatePhoto']);
     Route::post('complaint', [ComplaintController::class, 'complaint']);
+    Route::get('complaint', [ComplaintController::class, 'all']);
     Route::post('logout', [UserController::class, 'logout']);
 });
 
