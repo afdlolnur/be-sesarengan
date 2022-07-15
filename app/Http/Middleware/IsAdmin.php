@@ -22,6 +22,7 @@ class IsAdmin
             return $next($request);
         }
 
-        return redirect('/');
+        Auth::guard('web')->logout();
+        return redirect()->route('login');
     }
 }
