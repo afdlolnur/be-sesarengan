@@ -15,10 +15,10 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Total Admin</h4>
+                <h4>Total User</h4>
               </div>
               <div class="card-body">
-                10
+                10238
               </div>
             </div>
           </div>
@@ -30,7 +30,7 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>News</h4>
+                <h4>Aduan</h4>
               </div>
               <div class="card-body">
                 42
@@ -60,7 +60,7 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Online Users</h4>
+                <h4>Users</h4>
               </div>
               <div class="card-body">
                 47

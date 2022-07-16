@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Login &mdash; Stisla</title>
+  <title>Netizens &mdash; Login</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -50,11 +50,11 @@
                     <div class="d-block">
                     	<label for="password" class="control-label">{{ __('Password') }}</label>
                       <div class="float-right">
-                        @if (Route::has('password.request'))
+                        {{-- @if (Route::has('password.request'))
                         <a href="{{ route('password.request') }}" class="text-small">
                           {{ __('Lupa Password?') }}
                         </a>
-                        @endif
+                        @endif --}}
                       </div>
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
@@ -78,12 +78,12 @@
                 </form>
               </div>
             </div>
-            <div class="mt-5 text-muted text-center">
+            {{-- <div class="mt-5 text-muted text-center">
               Belum punya akun? <a href="#"> Daftar</a>
             </div>
             <div class="simple-footer">
               Copyright &copy; Stisla 2018
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>
