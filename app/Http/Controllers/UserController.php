@@ -29,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('pages.users.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class UserController extends Controller
 
         User::create($data);
 
-        return redirect()->route('users.index');
+        return redirect()->route('pages.users.index');
     }
 
     /**
@@ -68,7 +68,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit',[
+        return view('pages.users.edit',[
             'item' => $user
         ]);
     }
@@ -91,7 +91,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('users.index');
+        return redirect()->route('pages.users.index');
     }
 
     /**
@@ -104,6 +104,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('users.index');
+        return redirect()->route('pages.users.index');
     }
 }

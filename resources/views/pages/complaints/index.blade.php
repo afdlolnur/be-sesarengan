@@ -5,11 +5,10 @@
 <div class="main-content">
     <section class="section">
       <div class="section-header">
-        <h1>DataTables</h1>
+        <h1>Data Aduan</h1>
         <div class="section-header-breadcrumb">
-          <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-          <div class="breadcrumb-item"><a href="#">Modules</a></div>
-          <div class="breadcrumb-item">DataTables</div>
+          <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+          <div class="breadcrumb-item">Data Aduan</div>
         </div>
       </div>
 
@@ -23,7 +22,10 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h4>Data Aduan</h4>
+                <a href="{{ route('complaints.create') }}" class="button btn btn-icon icon-left btn-primary">
+                  <i class="far fa-edit"></i>
+                  Tambah Data
+                </a>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -31,9 +33,14 @@
                     <thead>
                       <tr> 
                         <th class="px-6 py-4">ID</th>
-                        <th class="px-6 py-4">Name</th>
-                        <th class="px-6 py-4">Email</th>
-                        <th class="px-6 py-4">Roles</th>
+                        <th class="px-6 py-4">Title</th>
+                        {{-- <th class="px-6 py-4">Deskripsi</th> --}}
+                        <th class="px-6 py-4">Caption</th>
+                        <th class="px-6 py-4">Foto</th>
+                        <th class="px-6 py-4">Tanggal</th>
+                        <th class="px-6 py-4">Location</th>
+                        <th class="px-6 py-4">Public</th>
+                        <th class="px-6 py-4">Anonim</th>
                         <th class="px-6 py-4">Action</th>
                       </tr>
                     </thead>
@@ -41,15 +48,23 @@
                         @forelse($complaint as $item)
                         <tr>
                             <td class="py-2">{{ $item->id }}</td>
-                            <td class="py-2">{{ $item->user_id }}</td>
                             <td class="py-2">{{ $item->title }}</td>
-                            <td class="py-2">{{ $item->description }}</td>
+                            {{-- <td class="py-2">{{ $item->description }}</td> --}}
+                            <td class="py-2">{{ $item->caption }}</td>
+                            <td>
+                                <img alt="image" src="{{$item->picture_path}}" class="rounded-circle" width="35" data-toggle="tooltip" title="{{ $item->name }}">                              
+                            </td>
+                            <td class="py-2">-</td>
+                            <td class="py-2">{{ $item->location }}</td>
+                            <td class="py-2">{{ $item->is_public }}</td>
+                            <td class="py-2">{{ $item->is_anon }}</td>
+
                             <td class="py-2">
                                 <div class="btn-group mb-3 btn-group-sm py-text-center">
-                                    <a href="{{ route('users.edit', $item->id) }}" class="btn btn-sm btn-warning">
+                                    <a href="{{ route('complaints.edit', $item->id) }}" class="btn btn-sm btn-warning">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('users.destroy', $item->id) }}" method="POST">
+                                    <form action="{{ route('complaints.destroy', $item->id) }}" method="POST">
                                         {!! method_field('delete') . csrf_field() !!}
                                         <button type="submit" class="btn btn-sm btn-danger">
                                             <i class="fas fa-times" style="color: white;"></i>

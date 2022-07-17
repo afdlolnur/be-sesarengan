@@ -65,7 +65,7 @@
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
               <li class="active"><a class="nav-link active" href="{{ route('dashboard') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
-              <li><a class="nav-link active" href="{{ url('dashboard/complaints')}}"><i class="fas fa-columns"></i> <span>Aduan</span></a></li>
+              {{-- <li><a class="nav-link active" href="{{ url('dashboard/complaints')}}"><i class="fas fa-columns"></i> <span>Aduan</span></a></li> --}}
               {{-- <li class="nav-item dropdown active"> --}}
                 {{-- <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a> --}}
                 {{-- <ul class="dropdown-menu">
@@ -73,6 +73,15 @@
                   <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
                 </ul> --}}
               {{-- </li> --}}
+              <li class="menu-header">Netizens</li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Aduan</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="{{ url('dashboard/complaints')}}">Data Aduan</a></li>
+                  {{-- <li><a class="nav-link" href="{{ url('dashboard/complaints')}}">Data Aduan</a></li> --}}
+                  {{-- <li><a class="nav-link" href="#">----</a></li> --}}
+                </ul>
+              </li>
               <li class="menu-header">Master</li>
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i> <span>User</span></a>
@@ -81,7 +90,7 @@
                   {{-- <li><a class="nav-link" href="#">----</a></li> --}}
                 </ul>
               </li>
-              <li class="menu-header">Laporan</li>
+              <li class="menu-header">Lain-lain</li>
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Laporan</span></a>
                 <ul class="dropdown-menu">
@@ -90,13 +99,7 @@
                   <li><a class="nav-link" href="#">Report Lain-lain</a></li>
                 </ul>
               </li>
-              <li class="menu-header">Lain-lain</li>
-              <li><a class="nav-link" href="#"><i class="fas fa-ellipsis-h"></i> <span>Setting</span></a></li>
-              <li>
-                <form method="POST" action="{{ route('logout') }}" x-data>
-                  @csrf
-                  <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
-                </form>
+              <li><a class="nav-link" href="#"><i class="fas fa-ellipsis-h"></i> <span>Setting</span></a></li>  
             </ul>
 
             {{-- <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

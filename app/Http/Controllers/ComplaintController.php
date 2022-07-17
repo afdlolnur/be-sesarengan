@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\Complaint;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ComplaintController extends Controller
@@ -15,7 +16,7 @@ class ComplaintController extends Controller
      */
     public function index()
     {
-        $complaint = Complaint::all();
+        $complaint = Complaint::with('user')->get();
         // $user = Complaint::paginate(20);
 
         // dd($complaint);
@@ -31,7 +32,7 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('pages.complaints.create');
     }
 
     /**
