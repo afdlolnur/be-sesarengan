@@ -15,6 +15,7 @@ class ComplaintController extends Controller
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
             'title' => 'required',
             'description' => 'required',
             'is_public' => 'required',
@@ -27,11 +28,12 @@ class ComplaintController extends Controller
             'description' => $request->description,
             // 'picture_path' => $request->picture_path,
             'picture_path' => $request->file('picture_path')->store('assets/photo', 'public'),
-            'location' => $request->location,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
             'district' => $request->district,
             'is_public' => $request->is_public,
             'is_anon' => $request->is_anon,
-            'caption' => $request->caption
+            'caption_id' => $request->caption_id,
          ]);
 
         //  if ($request->file('file')){
@@ -58,7 +60,7 @@ class ComplaintController extends Controller
     public function all(Request $request)
     {
         // $id = $request->input('id');
-        $limit = $request->input('limit', 10);
+        $limit = $request->input('limit', 100);
         // $complaint_id = $request->input('complaint_id');
         // $status = $request->input('status');
 
@@ -79,8 +81,8 @@ class ComplaintController extends Controller
         //         );
         // }
 
-        // $complaint = Complaint::with(['user'])->where('user_id', Auth::user()->id);
-        $complaint = Complaint::query();
+        $complaint = Complaint::with(['user','caption']);
+        // $complaint = Complaint::query();
 
         // if($food_id)
         //     $complaint->where('food_id', $food_id);

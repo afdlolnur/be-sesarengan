@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ComplaintController;
+use App\Http\Controllers\API\CaptionController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,12 +27,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Route::post('user', [UserController::class, 'updateProfile']);
     // Route::post('user/photo', [UserController::class, 'updatePhoto']);
     Route::post('complaint', [ComplaintController::class, 'complaint']);
-    Route::get('complaint', [ComplaintController::class, 'all']);
     Route::post('logout', [UserController::class, 'logout']);
 });
 
 //ini kan tidak perlu auth
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
+Route::get('complaint', [ComplaintController::class, 'all']);
+
+Route::get('caption', [CaptionController::class, 'all']);
+Route::post('caption', [CaptionController::class, 'addcaption']);
 
 

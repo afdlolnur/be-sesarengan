@@ -18,17 +18,24 @@ class Complaint extends Model
         'title',
         'description',
         'picture_path',
-        'location',
+        'latitude',
+        'longitude',
         'district',
         'is_public',
         'is_anon',
-        'caption'
+        'caption_id',
+        'status'
 
     ];
 
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function caption()
+    {
+        return $this->hasOne(Caption::class, 'id', 'caption_id');
     }
 
 
