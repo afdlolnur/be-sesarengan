@@ -16,7 +16,7 @@ class ComplaintController extends Controller
      */
     public function index()
     {
-        $complaint = Complaint::with('user')->get();
+        $complaint = Complaint::with(['user','caption','detail'])->get();
         // $user = Complaint::paginate(20);
 
         // dd($complaint);

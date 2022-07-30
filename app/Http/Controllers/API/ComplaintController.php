@@ -95,4 +95,17 @@ class ComplaintController extends Controller
             'Data list aduan berhasil diambil'
         );
     }
+
+    public function detail(Request $request, $id)
+    {
+        // $transaction = Transaction::findOrFail($id);
+
+        $detailcomplaint = DetailComplaint::query()->where('complaint_id', $id);
+        return ResponseFormatter::success(
+            $detailcomplaint,
+            'Data Detail aduan berhasil diambil'
+        );
+    }
+
+    
 }

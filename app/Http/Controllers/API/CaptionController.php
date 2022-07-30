@@ -13,7 +13,7 @@ class CaptionController extends Controller
     public function all(Request $request)
     {
         $limit = $request->input('limit', 100);
-        $caption = Caption::query();
+        $caption = Caption::query()->orderBy('caption','desc');
 
         return ResponseFormatter::success(
             $caption->paginate($limit),

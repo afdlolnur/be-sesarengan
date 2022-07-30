@@ -38,18 +38,22 @@ class Complaint extends Model
         return $this->hasOne(Caption::class, 'id', 'caption_id');
     }
 
+    public function detail()
+    {
+        return $this->hasMany(DetailComplaint::class, 'id', 'detail_complaint_id');
+    }
 
-    //asesor created at ~afd
-    // public function getCreatedAttribute($svalue)
-    // {
-    //     return Carbon::parse($value)->timestamp;
-    // }
+    // asesor created at ~afd
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->timestamp;
+    }
 
-    //asesor updated at ~afd
-    // public function getUpdatedAttribute($svalue)
-    // {
-    //     return Carbon::parse($value)->timestamp;
-    // }
+    // asesor updated at ~afd
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->timestamp;
+    }
 
     public function getPicturePathAttribute()
     {
