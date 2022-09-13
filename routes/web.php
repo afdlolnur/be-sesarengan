@@ -1,6 +1,7 @@
 <?php
 
-
+use App\Http\Controllers\CaptionController;
+use App\Http\Controllers\YajraController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ComplaintController;
@@ -37,3 +38,10 @@ Route::prefix('dashboard')
 //     })->name('dashboard');
 // });
 
+//CRUD CAPTION
+Route::get('caption.data', [CaptionController::class, 'data'])->name('caption.data');
+Route::get('caption', [CaptionController::class, 'index'])->name('caption');
+Route::post('caption.store', [CaptionController::class, 'store'])->name('caption.store');
+Route::post('caption.edit', [CaptionController::class, 'edit'])->name('caption.edit');
+Route::post('caption.update', [CaptionController::class, 'update'])->name('caption.update');
+Route::post('caption.delete', [CaptionController::class, 'delete'])->name('caption.delete');
