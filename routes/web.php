@@ -23,6 +23,17 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
+//test halaman error
+// Route::get('/403', function () {
+//     return view('errors.403');
+// });
+// Route::get('/500', function () {
+//     return view('errors.500');
+// });
+// Route::get('/404', function () {
+//     return view('errors.404');
+// });
+
 // Dashboard
 Route::prefix('dashboard')
     ->middleware(['auth:sanctum','admin'])
