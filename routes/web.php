@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\WisataController;
 use App\Http\Controllers\CaptionController;
 use App\Http\Controllers\YajraController;
@@ -73,3 +74,11 @@ Route::post('wisata.store', [WisataController::class, 'store'])->name('wisata.st
 Route::post('wisata.edit', [WisataController::class, 'edit'])->name('wisata.edit');
 Route::post('wisata.update', [WisataController::class, 'update'])->name('wisata.update');
 Route::post('wisata.delete', [WisataController::class, 'delete'])->name('wisata.delete');
+
+//CRUD ARTIKEL
+Route::get('article.data', [ArticleController::class, 'data'])->name('article.data');
+Route::get('article', [ArticleController::class, 'index'])->name('article');
+Route::post('article.store', [ArticleController::class, 'store'])->name('article.store');
+Route::post('article.edit', [ArticleController::class, 'edit'])->name('article.edit');
+Route::post('article.update', [ArticleController::class, 'update'])->name('article.update');
+Route::post('article.delete', [ArticleController::class, 'delete'])->name('article.delete');
