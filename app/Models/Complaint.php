@@ -15,7 +15,7 @@ class Complaint extends Model
 
     protected $fillable = [
         'user_id',
-        'title',
+        // 'title',
         'description',
         'picture_path',
         'latitude',
@@ -24,41 +24,59 @@ class Complaint extends Model
         'is_public',
         'is_anon',
         'caption_id',
-        'status'
+        'status',
+        'pending_at',
+        'time'
 
     ];
 
     public function user()
     {
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'user_id')->select(['id', 'name','email']);
     }
-
+    
     public function caption()
     {
-        return $this->hasOne(Caption::class, 'id', 'caption_id');
+        return $this->hasOne(Caption::class, 'id', 'caption_id')->select(['id', 'caption']);
     }
 
-    public function detail()
-    {
-        return $this->hasMany(DetailComplaint::class, 'id', 'detail_complaint_id');
-    }
 
-    // asesor created at ~afd
+    //asesor created at ~afd
     public function getCreatedAtAttribute($value)
     {
-        return Carbon::parse($value)->timestamp;
+        //return Carbon::parse($value)->timestamp;
+        // return Carbon::parse($value)->isoFormat('dddd, D MMMM Y');
+        return Carbon::parse($value)->translatedFormat('l jS F Y, h:i');
+        
+        // return Carbon::parse($value)->format('l jS \of F Y h:i:s A');
+        
     }
 
     // asesor updated at ~afd
     public function getUpdatedAtAttribute($value)
     {
-        return Carbon::parse($value)->timestamp;
+        // return Carbon::parse($value)->timestamp;
+        return Carbon::parse($value)->translatedFormat('l jS F Y, h:i');
     }
 
     public function getPicturePathAttribute()
     {
         return url('') . Storage::url($this->attributes['picture_path']);
     }
+    
+    // asesor updated at ~afd
+    public function getPendingAtAttribute()
+    {
+        // return Carbon::parse($value)->timestamp;
+        return Carbon::parse($this->attributes['pending_at'])->translatedFormat('l jS F Y, h:i');
+    }
+    
+    public function getTimeAttribute()
+    {
+        // return Carbon::parse($value)->timestamp;
+        return Carbon::parse($this->attributes['time'])->translatedFormat('l jS F Y, h:i A');
+    }
+    
 }
 
 
