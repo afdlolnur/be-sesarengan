@@ -27,7 +27,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Route::post('user', [UserController::class, 'updateProfile']);
     // Route::post('user/photo', [UserController::class, 'updatePhoto']);
     Route::post('complaint', [ComplaintController::class, 'complaint']);
-    Route::post('complaint/{id}', [ComplaintController::class, 'detail']);
+    Route::get('complaint/{id}', [ComplaintController::class, 'detail']);
     Route::post('logout', [UserController::class, 'logout']);
 });
 
@@ -38,6 +38,11 @@ Route::get('complaint', [ComplaintController::class, 'all']);
 
 Route::get('caption', [CaptionController::class, 'all']);
 Route::post('caption', [CaptionController::class, 'addcaption']);
+
+//otp request 
+Route::post('register2', [UserController::class, 'register2']);
+Route::post('submitotp', [UserController::class, 'submitotp']);
+
 
 
 

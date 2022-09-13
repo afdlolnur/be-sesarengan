@@ -14,4 +14,9 @@ class DetailComplaint extends Model
         'complaint_id',
         'personal_in_charge'
     ];
+
+    public function complaint()
+    {
+        return $this->belongsTo(Complaint::class, 'id', 'detail_complaint_id');
+    }
 }
