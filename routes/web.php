@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WisataController;
 use App\Http\Controllers\CaptionController;
 use App\Http\Controllers\YajraController;
 use App\Http\Controllers\DashboardController;
@@ -64,3 +65,11 @@ Route::get('user', [UserController::class, 'index'])->name('user');
 // Route::post('caption.edit', [CaptionController::class, 'edit'])->name('caption.edit');
 // Route::post('caption.update', [CaptionController::class, 'update'])->name('caption.update');
 Route::post('user.delete', [UserController::class, 'delete'])->name('user.delete');
+
+//CRUD WISATA
+Route::get('wisata.data', [WisataController::class, 'data'])->name('wisata.data');
+Route::get('wisata', [WisataController::class, 'index'])->name('wisata');
+Route::post('wisata.store', [WisataController::class, 'store'])->name('wisata.store');
+Route::post('wisata.edit', [WisataController::class, 'edit'])->name('wisata.edit');
+Route::post('wisata.update', [WisataController::class, 'update'])->name('wisata.update');
+Route::post('wisata.delete', [WisataController::class, 'delete'])->name('wisata.delete');
