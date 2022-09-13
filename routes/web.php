@@ -56,3 +56,11 @@ Route::post('caption.store', [CaptionController::class, 'store'])->name('caption
 Route::post('caption.edit', [CaptionController::class, 'edit'])->name('caption.edit');
 Route::post('caption.update', [CaptionController::class, 'update'])->name('caption.update');
 Route::post('caption.delete', [CaptionController::class, 'delete'])->name('caption.delete');
+
+//CRUD USERS
+Route::get('user.data', [UserController::class, 'data'])->name('user.data');
+Route::get('user', [UserController::class, 'index'])->name('user');
+// Route::post('user.store', [UserController::class, 'store'])->name('user.store');
+// Route::post('caption.edit', [CaptionController::class, 'edit'])->name('caption.edit');
+// Route::post('caption.update', [CaptionController::class, 'update'])->name('caption.update');
+Route::post('user.delete', [UserController::class, 'delete'])->name('user.delete');
