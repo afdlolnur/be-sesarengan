@@ -25,7 +25,7 @@ use App\Http\Controllers\API\WisataController;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     //disini route yang harus login dulu
-    Route::post('user', [UserController::class, 'fetch']);
+    Route::get('user', [UserController::class, 'fetch']);
     Route::get('history', [UserController::class, 'history']);
     // Route::post('user', [UserController::class, 'updateProfile']);
     // Route::post('user/photo', [UserController::class, 'updatePhoto']);

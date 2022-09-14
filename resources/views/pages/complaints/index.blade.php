@@ -1,159 +1,470 @@
-@extends('layouts.admin')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<!-- Main Content -->
-<div class="main-content">
-    <section class="section">
-      <div class="section-header">
-        <h1>Data Aduan</h1>
-        <div class="section-header-breadcrumb">
-          <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-          <div class="breadcrumb-item">Data Aduan</div>
-        </div>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesarengan</title>
 
-      <div class="section-body">
-        {{-- <h2 class="section-title">DataTables</h2>
-        <p class="section-lead">
-          We use 'DataTables' made by @SpryMedia. You can check the full documentation <a href="https://datatables.net/">here</a>.
-        </p> --}}
+    <link rel="stylesheet" href="{{ asset('dist/assets/css/main/app.css')}}">
+    <link rel="stylesheet" href="{{ asset('dist/assets/css/main/app-dark.css')}}">
+    <link rel="shortcut icon" href="{{ asset('dist/assets/images/logo/favicon.svg')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('dist/assets/images/logo/favicon.png')}}" type="image/png">
 
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <a href="{{ route('complaints.create') }}" class="button btn btn-icon icon-left btn-primary">
-                  <i class="far fa-edit"></i>
-                  Tambah Data
-                </a>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-striped" id="table-1">
-                    <thead>
-                      <tr> 
-                        <th class="px-6 py-4">ID</th>
-                        <th class="px-6 py-4">Title</th>
-                        {{-- <th class="px-6 py-4">Deskripsi</th> --}}
-                        <th class="px-6 py-4">Caption</th>
-                        <th class="px-6 py-4">Foto</th>
-                        <th class="px-6 py-4">Tanggal</th>
-                        <th class="px-6 py-4">Location</th>
-                        <th class="px-6 py-4">Public</th>
-                        <th class="px-6 py-4">Anonim</th>
-                        <th class="px-6 py-4">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($complaint as $item)
-                        <tr>
-                            <td class="py-2">{{ $item->id }}</td>
-                            <td class="py-2">{{ $item->title }}</td>
-                            {{-- <td class="py-2">{{ $item->description }}</td> --}}
-                            <td class="py-2">{{ $item->caption }}</td>
-                            <td>
-                                <img alt="image" src="{{$item->picture_path}}" class="rounded-circle" width="35" data-toggle="tooltip" title="{{ $item->name }}">                              
-                            </td>
-                            <td class="py-2">-</td>
-                            <td class="py-2">{{ $item->location }}</td>
-                            <td class="py-2">{{ $item->is_public }}</td>
-                            <td class="py-2">{{ $item->is_anon }}</td>
+     {{-- 1. DATATABLES --}}
+     <link rel="stylesheet" type="text/css" href="{{ asset('dist/assets/css/pages/datatablescustom.css')}}">
+     {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css"> --}}
+     <!-- Bootstrap CSS -->
+     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> --}}
+     {{-- ini untuk modal --}}
+     {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> --}}
+     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>   --}}
+     
+     {{-- <script src="http://maps.googleapis.com/maps/api/js"></script> --}}
+    {{-- <script
+        src="http://maps.google.com/maps/api/js?key=AIzaSyDNcqg0ITd70TcGtcts6OMhNTuAKWoPg3k&amp;sensor=true">
+    </script> --}}
+     <script src="http://maps.googleapis.com/maps/api/js"></script>
+    
+</head>
 
-                            <td class="py-2">
-                                <div class="btn-group mb-3 btn-group-sm py-text-center">
-                                    <a href="{{ route('complaints.edit', $item->id) }}" class="btn btn-sm btn-warning">
-                                        <i class="far fa-edit"></i>
-                                    </a>
-                                    <form action="{{ route('complaints.destroy', $item->id) }}" method="POST">
-                                        {!! method_field('delete') . csrf_field() !!}
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-times" style="color: white;"></i>
-                                        </button>                                        </form>
-                                </div>
-                            </td>
-                            {{-- <td>Create a mobile app</td>
-                            <td>
-                            <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                            </td>
-                            <td>2018-01-20</td>
-                            <td><div class="badge badge-success">Completed</div></td>
-                            <td><a href="#" class="btn btn-secondary">Detail</a></td> --}}
-                        </tr>
-                      @empty
-                        <tr>
-                            <td colspan="6" class="border text-center p-5">
-                                Data Ada Data
-                            </td>
-                        </tr>
-                      @endforelse
-
-
-                      {{-- <tr>
-                        <td>
-                          2
-                        </td>
-                        <td>Redesign homepage</td>
-                        <td class="align-middle">
-                          <div class="progress" data-height="4" data-toggle="tooltip" title="0%">
-                            <div class="progress-bar" data-width="0"></div>
-                          </div>
-                        </td>
-                        <td>
-                          <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Nur Alpiana">
-                          <img alt="image" src="../assets/img/avatar/avatar-3.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Hariono Yusup">
-                          <img alt="image" src="../assets/img/avatar/avatar-4.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Bagus Dwi Cahya">
-                        </td>
-                        <td>2018-04-10</td>
-                        <td><div class="badge badge-info">Todo</div></td>
-                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          3
-                        </td>
-                        <td>Backup database</td>
-                        <td class="align-middle">
-                          <div class="progress" data-height="4" data-toggle="tooltip" title="70%">
-                            <div class="progress-bar bg-warning" data-width="70%"></div>
-                          </div>
-                        </td>
-                        <td>
-                          <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Rizal Fakhri">
-                          <img alt="image" src="../assets/img/avatar/avatar-2.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Hasan Basri">
-                        </td>
-                        <td>2018-01-29</td>
-                        <td><div class="badge badge-warning">In Progress</div></td>
-                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          4
-                        </td>
-                        <td>Input data</td>
-                        <td class="align-middle">
-                          <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
-                            <div class="progress-bar bg-success" data-width="100%"></div>
-                          </div>
-                        </td>
-                        <td>
-                          <img alt="image" src="../assets/img/avatar/avatar-2.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Rizal Fakhri">
-                          <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Isnap Kiswandi">
-                          <img alt="image" src="../assets/img/avatar/avatar-4.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Yudi Nawawi">
-                          <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Khaerul Anwar">
-                        </td>
-                        <td>2018-01-16</td>
-                        <td><div class="badge badge-success">Completed</div></td>
-                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                      </tr> --}}
-                    </tbody>
-                  </table>
+<body>
+    <div id="app">
+        {{-- sidebar:start --}}
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header position-relative">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="logo">
+                            <a href="index.html"><img src="{{ asset('dist/assets/images/logo/sesarengan.png') }}" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20"
+                                height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
+                                <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M10.5 14.5c2.219 0 4-1.763 4-3.982a4.003 4.003 0 0 0-4-4.018c-2.219 0-4 1.781-4 4c0 2.219 1.781 4 4 4zM4.136 4.136L5.55 5.55m9.9 9.9l1.414 1.414M1.5 10.5h2m14 0h2M4.135 16.863L5.55 15.45m9.899-9.9l1.414-1.415M10.5 19.5v-2m0-14v-2"
+                                        opacity=".3"></path>
+                                    <g transform="translate(-210 -1)">
+                                        <path d="M220.5 2.5v2m6.5.5l-1.5 1.5"></path>
+                                        <circle cx="220.5" cy="11.5" r="4"></circle>
+                                        <path d="m214 5l1.5 1.5m5 14v-2m6.5-.5l-1.5-1.5M214 18l1.5-1.5m-4-5h2m14 0h2">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                            <div class="form-check form-switch fs-6">
+                                <input class="form-check-input  me-0" type="checkbox" id="toggle-dark">
+                                <label class="form-check-label"></label>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" class="iconify iconify--mdi" width="20" height="20"
+                                preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3l3.19.09m3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95l2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="sidebar-toggler  x">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item">
+                            <a href="index.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item has-sub active">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Aduan</span>
+                            </a>
+                            <ul class="submenu active">
+                                <li class="submenu-item active">
+                                    <a href="#">Data Aduan</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-collection-fill"></i>
+                                <span>Data Master</span>
+                            </a>
+                            <ul class="submenu">
+                                <li class="submenu-item ">
+                                    <a href="#">Data User</a>
+                                </li>
+                                <li class="submenu-item">
+                                    <a href="#">Data Caption</a>
+                                </li>
+                                <li class="submenu-item">
+                                    <a href="#">Data Wisata</a>
+                                </li>
+                                <!-- <li class="submenu-item ">
+                                    <a href="#">Sweet Alert</a>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>Setting</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="#">1</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">2</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">3</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="table.html" class='sidebar-link'>
+                                <i class="bi bi-x-octagon-fill"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
         </div>
-        
-      </div>
-    </section>
-</div>
-@endsection
+        {{-- sidebar:end --}}
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3>Data Aduan</h3>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Aduan</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <section class="section">
+                    <div class="card">
+                        {{-- <div class="card-header" style="padding-bottom: 20px;"> 
+                        </div> --}}
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="tabel2">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Aksi</th>
+                                            <th>Caption</th>
+                                            <th>Deskripsi</th>
+                                            <th>Foto</th>
+                                            <th>Latitude</th>
+                                            <th>Longitude</th>
+                                            <th>Lokasi</th>
+                                            {{-- <th>Nama Pelapor</th> --}}
+                                            {{-- <th>Public</th> --}}
+                                            {{-- <th>Anon</th> --}}
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2022 &copy; Sesarengan</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                                href="#">Sesarengan Team</a></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>  
+
+    <!--Basic Modal -->
+    <div class="col-12">
+        <div class="modal fade text-left" id="default" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel1" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel1">Detail Aduan Caption</h5>
+                        <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="card-title" id="caption">Caption</h4>
+                                <p class="card-text" id="description">
+                                    Disini Description Gummies bonbon apple pie fruitcake icing biscuit apple pie jelly-o sweet roll. Toffee
+                                    sugar plum sugar plum jelly-o jujubes bonbon dessert carrot cake.
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="carousel-item active">
+                                    <img src="https://upload.wikimedia.org/wikipedia/id/d/d4/Spongebob_Characters.jpg" class="rounded d-block w-100" alt="...">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                {{-- <label for="caption" class="form-label">ssssssssssss</label> --}}
+                                <div id="googleMap" style="width:100%;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="caption" class="form-label">Caption</label>
+                            <input type="text" class="form-control" id="caption" placeholder="Masukkan Caption">
+                            <input type="hidden" id="id" name="id">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal" id="tutup">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Batal</span>
+                        </button>
+                        <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal" id="simpan">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block" id="simpanspan">Simpan</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{asset('dist/assets/js/app.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            isi();
+        })
+        function isi() {
+            $('#tabel2').DataTable({
+                serverside : true,
+                responseive : true,
+                ajax : {
+                    url : "{{route('complaint.data')}}"
+                },
+                columns:[
+                    {
+                        "data" :null, "sortable": false,
+                        render : function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1
+                        }
+                    },
+                    {data: 'aksi', name: 'aksi'},
+                    {data: 'caption', name: 'caption'},
+                    {data: 'description', name: 'desciption'},
+                    {data: 'picture_path', name: 'picture_path',
+                        searchable: false,
+                        orderable:false,
+                        render: function( data, type, full, meta ) {
+                            return "<img src=\"http://netizens.afdlolnur.id/storage/" + data + "\" height=\"50\"/>";
+                        }
+                    },
+                    {data: 'latitude', name: 'latitude'},
+                    {data: 'longitude', name: 'longitude'},
+                    {data: 'district', name: 'district'},
+                    {data: 'status', name: 'status',
+                        searchable: false,
+                        render: function( data, type, full, meta ) {
+                            if (data === 'PENDING') {
+                                return '<span class="badge bg-danger">'+ data +'</span>';
+                            } else if (data === 'DITERIMA'){
+                                return '<span class="badge bg-warning">'+ data +'</span>';
+                            } else if(data === 'DIKERJAKAN'){
+                                return '<span class="badge bg-primary">'+ data +'</span>';
+                            } else {
+                                return '<span class="badge bg-success">'+ data +'</span>';
+                            } // return "<img src=\"http://netizens.afdlolnur.id/storage/" + data + "\" height=\"50\"/>";
+                        }
+                    }
+                ]
+            })
+        }
+    </script>
+    <script>
+        $(document).on('click','.edit', function () {
+            let id = $(this).attr('id')
+            // console.log(id);
+            // $('#tambah').click()
+            // $('#simpanspan').text('Update')
+            // $('#myModalLabel1').text('Detail Aduan')
+            $.ajax({
+                url : "{{route('complaint.edit')}}",
+                type : 'post',
+                data : {
+                    id : id,
+                    _token : "{{csrf_token()}}"
+                },
+                success: function (res) {
+                    // initialize();
+                    // $('#id').val(res.data.id)
+                    console.log(res.data);
+                    // $('#caption').text(res.data.description)
+                    $('#description').text(res.data.description)
+                    // $('#picture_path').val(res.data.caption)
+                    // $('#latitude').val(res.data.caption)
+                    // $('#longitude').val(res.data.caption)
+                    // $('#district').val(res.data.caption)
+                    // $('#name').val(res.data.caption)
+                    // $('#is_public').val(res.data.caption)
+                    // $('#is_anon').val(res.data.caption)
+                    // $('#status').val(res.data.caption)
+                    var propertiPeta = {
+                        center: new google.maps.LatLng(-8.5830695, 116.3202515),
+                        zoom: 9,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+                    // membuat Marker
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(-8.5830695, 116.3202515),
+                        map: peta
+                    });
+                }
+            })
+        })
+
+        // function initialize() {
+        //      var propertiPeta = {
+        //          center: new google.maps.LatLng(-8.5830695, 116.3202515),
+        //          zoom: 9,
+        //          mapTypeId: google.maps.MapTypeId.ROADMAP
+        //      };
+        //      var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+        //      // membuat Marker
+        //      var marker = new google.maps.Marker({
+        //          position: new google.maps.LatLng(-8.5830695, 116.3202515),
+        //          map: peta
+        //      });
+        //  };
+    </script>
+    
+    {{-- <script>
+        $('#simpanspan').on('click',function () {
+            if ($(this).text() === 'Simpan') {
+                tambah();
+            } else {
+                edit();
+            }
+        });
+
+        $(document).on('click','#btnTambah', function () {
+            $('#simpanspan').text('Simpan')
+            $('#myModalLabel1').text('Tambah Caption')
+        });
+
+        $(document).on('click','.edit', function () {
+            let id = $(this).attr('id')
+            $('#tambah').click()
+            $('#simpanspan').text('Update')
+            $('#myModalLabel1').text('Edit Caption')
+            $.ajax({
+                url : "{{route('caption.edit')}}",
+                type : 'post',
+                data : {
+                    id : id,
+                    _token : "{{csrf_token()}}"
+                },
+                success: function (res) {
+                    $('#id').val(res.data.id)
+                    console.log(res.data);
+                    $('#caption').val(res.data.caption)
+
+                }
+            })
+        })
+
+        function tambah() {
+            $.ajax({
+                url : "{{route('caption.store')}}",
+                type : "post",
+                data : {
+                    caption : $('#caption').val(),
+                    "_token" : "{{csrf_token()}}"
+                },
+                success : function (res) {
+                    console.log(res);
+                    alert(res.text)
+                    $('#tutup').click()
+                    $('#tabel1').DataTable().ajax.reload()
+                    $('#caption').val(null)
+                },
+                error : function (xhr) {
+                    alert(xhr.responJson.text)
+                }
+            })
+        }
+
+        function edit(){
+            $.ajax({
+                url : "{{route('caption.update')}}",
+                type : "post",
+                data : {
+                    id : $('#id').val(),
+                    caption : $('#caption').val(),
+                    "_token" : "{{csrf_token()}}"
+                },
+                success : function (res) {
+                    console.log(res);
+                    alert(res.text)
+                    $('#tutup').click()
+                    $('#tabel1').DataTable().ajax.reload()
+                    $('#caption').val(null)
+                    $('#simpanspan').text("Simpan")
+                },
+                error : function (xhr) {
+                    alert(xhr.responJson.text)
+                }
+            }) 
+        }
+
+        $(document).on('click','.hapus', function () {
+            let id = $(this).attr('id')
+            $.ajax({
+                url : "{{route('caption.delete')}}",
+                type : 'post',
+                data: {
+                    id: id,
+                    "_token" : "{{csrf_token()}}"
+                },
+                success: function (params) {
+                    alert(params.text)
+                    $('#tabel1').DataTable().ajax.reload()
+                }
+            })
+        })
+    </script> --}}
+</body>
+</html>
