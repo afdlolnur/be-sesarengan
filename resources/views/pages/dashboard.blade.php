@@ -137,19 +137,19 @@
             </header>
 
             <div class="page-heading">
-                <h3>Dashboard Sesareangan</h3>
+                <h3>Dashboard Sesarengan</h3>
             </div>
             <div class="page-content">
                 <section class="row">
-                    <div class="col-12 col-lg-9">
+                    <div class="col-12 col-lg-12">
                         <div class="row">
                             <div class="col-6 col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body px-3 py-4-5">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div class="stats-icon purple">
-                                                    <i class="iconly-boldShow"></i>
+                                                <div class="stats-icon purple" style="background-color: #006266">
+                                                    <i class="iconly-boldDanger"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
@@ -165,13 +165,13 @@
                                     <div class="card-body px-3 py-4-5">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div class="stats-icon blue">
+                                                <div class="stats-icon blue" style="background-color: #009432">
                                                     <i class="iconly-boldProfile"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">User</h6>
-                                                <h6 class="font-extrabold mb-0">1832</h6>
+                                                <h6 class="text-muted font-semibold">Jumlah User Aktif</h6>
+                                                <h6 class="font-extrabold mb-0">132</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -182,12 +182,12 @@
                                     <div class="card-body px-3 py-4-5">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div class="stats-icon green">
-                                                    <i class="iconly-boldAdd-User"></i>
+                                                <div class="stats-icon green" style="background-color: #A3CB38">
+                                                    <i class="iconly-boldActivity"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Aduan Selesai</h6>
+                                                <h6 class="text-muted font-semibold">Aduan Dikerjakan</h6>
                                                 <h6 class="font-extrabold mb-0">11</h6>
                                             </div>
                                         </div>
@@ -199,12 +199,12 @@
                                     <div class="card-body px-3 py-4-5">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div class="stats-icon red">
-                                                    <i class="iconly-boldBookmark"></i>
+                                                <div class="stats-icon red" style="background-color: #C4E538">
+                                                    <i class="iconly-boldTick-Square"></i>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Aduan Dikerjakan</h6>
+                                                <h6 class="text-muted font-semibold">Aduan Selesai</h6>
                                                 <h6 class="font-extrabold mb-0">12</h6>
                                             </div>
                                         </div>
@@ -212,20 +212,9 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Profile Visit</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="chart-profile-visit"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
+                       
                         <div class="row">
-                            <div class="col-12 col-xl-12">
+                            <div class="col-6 col-xl-6">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>Aduan Terkini</h4>
@@ -243,29 +232,40 @@
                                                     <tr>
                                                         <td class="col-3">
                                                             <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                    <img src="{{ asset('dist/assets/images/faces/5.jpg')}}">
-                                                                </div>
-                                                                <p class="font-bold ms-3 mb-0">WTF People</p>
+                                                                {{-- <div class="avatar avatar-md">
+                                                                    <img src="{{ asset('dist/assets/images/faces/2.jpg')}}">
+                                                                </div> --}}
+                                                                <p class="font-bold ms-3 mb-0">Bantuan Sosial</p>
                                                             </div>
                                                         </td>
                                                         <td class="col-auto">
-                                                            <p class=" mb-0">Congratulations on your graduation!</p>
+                                                            <p class=" mb-0">Bantuan di Kertek yang dapat yang rumahnya bagus</p>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="col-3">
                                                             <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                    <img src="{{ asset('dist/assets/images/faces/2.jpg')}}">
-                                                                </div>
-                                                                <p class="font-bold ms-3 mb-0">Tai Kucing</p>
+                                                                {{-- <div class="avatar avatar-md">
+                                                                    <img src="{{ asset('dist/assets/images/faces/5.jpg')}}">
+                                                                </div> --}}
+                                                                <p class="font-bold ms-3 mb-0">Bantuan Sosial</p>
                                                             </div>
                                                         </td>
                                                         <td class="col-auto">
-                                                            <p class=" mb-0">Wow amazing design! Can you make another
-                                                                tutorial for
-                                                                this design?</p>
+                                                            <p class=" mb-0">Bansos di Selomerto yang tidak  tepat sasaran</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="col-3">
+                                                            <div class="d-flex align-items-center">
+                                                                {{-- <div class="avatar avatar-md">
+                                                                    <img src="{{ asset('dist/assets/images/faces/2.jpg')}}">
+                                                                </div> --}}
+                                                                <p class="font-bold ms-3 mb-0">Jalan Rusak</p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="col-auto">
+                                                            <p class=" mb-0">Jalan Rusak disepanjang Wadaslintang Kaliwiro </p>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -274,32 +274,45 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-3">
-                        <div class="card">
-                            <div class="card-body py-4 px-5">
-                                <div class="d-flex align-items-center">
-                                    <div class="avatar avatar-xl">
-                                        <img src="{{ asset('dist/assets/images/faces/1.jpg')}}" alt="Face 1">
+                            <div class="col-6 col-xl-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Statistik Aduan</h4>
                                     </div>
-                                    <div class="ms-3 name">
-                                        <h5 class="font-bold">John Duck</h5>
-                                        <h6 class="text-muted mb-0">@johnducky</h6>
+                                    <div class="card-body">
+                                        <div id="chart-visitors-profile">
+                                            {!! $chart->container() !!}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+                    </div>
+                    {{-- <div class="col-12 col-lg-3">
+                        <div class="card">
+                            <div class="card-body py-4 px-5">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar avatar-xl">
+                                        <img src="{{ asset('dist/assets/images/faces/5.jpg')}}" alt="Face 1">
+                                    </div>
+                                    <div class="ms-3 name">
+                                        <h5 class="font-bold">Admin</h5>
+                                        <h6 class="text-muted mb-0">@admin</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card">
                             <div class="card-header">
                                 <h4>Statistik Aduan</h4>
                             </div>
                             <div class="card-body">
-                                <div id="chart-visitors-profile"></div>
+                                <div id="chart-visitors-profile">
+                                    {!! $chart->container() !!}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </section>
             </div>
 
@@ -317,6 +330,10 @@
         </div>
     </div>
     <script src="{{ asset('dist/assets/js/app.js')}}"></script>
+
+    <script src="{{ $chart->cdn() }}"></script>
+
+    {{ $chart->script() }}
     {{-- <script src="{{ asset('dist/assets/js/pages/dashboard.js')}}"></script> --}}
 </body>
 

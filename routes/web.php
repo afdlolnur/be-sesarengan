@@ -82,3 +82,5 @@ Route::post('article.store', [ArticleController::class, 'store'])->name('article
 Route::post('article.edit', [ArticleController::class, 'edit'])->name('article.edit');
 Route::post('article.update', [ArticleController::class, 'update'])->name('article.update');
 Route::post('article.delete', [ArticleController::class, 'delete'])->name('article.delete');
+
+//CRUD COMPLAINT
