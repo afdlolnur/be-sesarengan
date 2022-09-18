@@ -154,7 +154,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">Jumlah Aduan</h6>
-                                                <h6 class="font-extrabold mb-0">1271</h6>
+                                                <h6 class="font-extrabold mb-0">{{ $complaint_all }}</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +171,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">Jumlah User Aktif</h6>
-                                                <h6 class="font-extrabold mb-0">132</h6>
+                                                <h6 class="font-extrabold mb-0">{{ $user_all }}</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -188,7 +188,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">Aduan Dikerjakan</h6>
-                                                <h6 class="font-extrabold mb-0">11</h6>
+                                                <h6 class="font-extrabold mb-0">{{ $complaint_dikerjakan }}</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -205,7 +205,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">Aduan Selesai</h6>
-                                                <h6 class="font-extrabold mb-0">12</h6>
+                                                <h6 class="font-extrabold mb-0">{{ $complaint_selesai }}</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -229,45 +229,18 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($complaint_terkini as $complaint)
                                                     <tr>
                                                         <td class="col-3">
                                                             <div class="d-flex align-items-center">
-                                                                {{-- <div class="avatar avatar-md">
-                                                                    <img src="{{ asset('dist/assets/images/faces/2.jpg')}}">
-                                                                </div> --}}
-                                                                <p class="font-bold ms-3 mb-0">Bantuan Sosial</p>
+                                                                <p class="font-bold ms-3 mb-0">{{ $complaint->caption->caption }}</p>
                                                             </div>
                                                         </td>
                                                         <td class="col-auto">
-                                                            <p class=" mb-0">Bantuan di Kertek yang dapat yang rumahnya bagus</p>
+                                                            <p class=" mb-0">{{ $complaint->description }}</p>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="col-3">
-                                                            <div class="d-flex align-items-center">
-                                                                {{-- <div class="avatar avatar-md">
-                                                                    <img src="{{ asset('dist/assets/images/faces/5.jpg')}}">
-                                                                </div> --}}
-                                                                <p class="font-bold ms-3 mb-0">Bantuan Sosial</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class="col-auto">
-                                                            <p class=" mb-0">Bansos di Selomerto yang tidak  tepat sasaran</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="col-3">
-                                                            <div class="d-flex align-items-center">
-                                                                {{-- <div class="avatar avatar-md">
-                                                                    <img src="{{ asset('dist/assets/images/faces/2.jpg')}}">
-                                                                </div> --}}
-                                                                <p class="font-bold ms-3 mb-0">Jalan Rusak</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class="col-auto">
-                                                            <p class=" mb-0">Jalan Rusak disepanjang Wadaslintang Kaliwiro </p>
-                                                        </td>
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
