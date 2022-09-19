@@ -13,6 +13,16 @@
 
      {{-- 1. DATATABLES --}}
      <link rel="stylesheet" type="text/css" href="{{ asset('dist/assets/css/pages/datatablescustom.css')}}">
+
+     {{-- <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ6WK6_iZ6ANbmW-gieuvb3tcJc53TfyM&callback=initMap&v=weekly"
+        defer></script> --}}
+
+        <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ6WK6_iZ6ANbmW-gieuvb3tcJc53TfyM">
+</script>
+
+        {{-- <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCJ6WK6_iZ6ANbmW-gieuvb3tcJc53TfyM"></script> --}}
      {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css"> --}}
      <!-- Bootstrap CSS -->
      {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> --}}
@@ -24,7 +34,9 @@
     {{-- <script
         src="http://maps.google.com/maps/api/js?key=AIzaSyDNcqg0ITd70TcGtcts6OMhNTuAKWoPg3k&amp;sensor=true">
     </script> --}}
-     <script src="http://maps.googleapis.com/maps/api/js"></script>
+    {{-- <script src="http://maps.googleapis.com/maps/api/js"></script> --}}
+
+    
     
 </head>
 
@@ -204,6 +216,7 @@
                         <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
                                 href="#">Sesarengan Team</a></p>
                     </div>
+                    {{-- <div id="mapus"></div> --}}
                 </div>
             </footer>
         </div>
@@ -226,28 +239,69 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h4 class="card-title" id="caption">Caption</h4>
-                                <p class="card-text" id="description">
-                                    Disini Description Gummies bonbon apple pie fruitcake icing biscuit apple pie jelly-o sweet roll. Toffee
-                                    sugar plum sugar plum jelly-o jujubes bonbon dessert carrot cake.
-                                </p>
                             </div>
+                        </div>
+                        
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="carousel-item active">
                                     <img src="https://upload.wikimedia.org/wikipedia/id/d/d4/Spongebob_Characters.jpg" class="rounded d-block w-100" alt="...">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                {{-- <label for="caption" class="form-label">ssssssssssss</label> --}}
-                                <div id="googleMap" style="width:100%;"></div>
+                                <div class="form form-horizontal">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <h6>Deskripsi</h6>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <p id="det_deskripsi"></p>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <h6>Latitude</h6>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <p id="det_latitude"></p>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <h6>Longitude</h6>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <p id="det_longitude"></p>
+                                            </div>
+                                            
+                                            <div class="col-lg-2">
+                                                <h6>Alamat</h6>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <p id="det_alamat"></p>
+                                            </div>
+                                            
+                                            <div class="col-lg-3">
+                                                <h6>Public/Private</h6>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <p id="det_is_public">...</p>
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                                <h6>Status</h6>
+                                            </div>
+                                            <div id="det_status" class="col-md-10">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="caption" class="form-label">Caption</label>
-                            <input type="text" class="form-control" id="caption" placeholder="Masukkan Caption">
-                            <input type="hidden" id="id" name="id">
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-md-12">
+                                <div id="map" style="height: 400px;"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="margin-top: 20px">
                         <button type="button" class="btn" data-bs-dismiss="modal" id="tutup">
                             <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Batal</span>
@@ -313,158 +367,68 @@
             })
         }
     </script>
-    <script>
-        $(document).on('click','.edit', function () {
-            let id = $(this).attr('id')
-            // console.log(id);
-            // $('#tambah').click()
-            // $('#simpanspan').text('Update')
-            // $('#myModalLabel1').text('Detail Aduan')
-            $.ajax({
-                url : "{{route('complaint.edit')}}",
-                type : 'post',
-                data : {
-                    id : id,
-                    _token : "{{csrf_token()}}"
-                },
-                success: function (res) {
-                    // initialize();
-                    // $('#id').val(res.data.id)
-                    console.log(res.data);
-                    // $('#caption').text(res.data.description)
-                    $('#description').text(res.data.description)
-                    // $('#picture_path').val(res.data.caption)
-                    // $('#latitude').val(res.data.caption)
-                    // $('#longitude').val(res.data.caption)
-                    // $('#district').val(res.data.caption)
-                    // $('#name').val(res.data.caption)
-                    // $('#is_public').val(res.data.caption)
-                    // $('#is_anon').val(res.data.caption)
-                    // $('#status').val(res.data.caption)
-                    var propertiPeta = {
-                        center: new google.maps.LatLng(-8.5830695, 116.3202515),
-                        zoom: 9,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    };
-                    var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
-                    // membuat Marker
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(-8.5830695, 116.3202515),
-                        map: peta
-                    });
-                }
-            })
-        })
 
-        // function initialize() {
-        //      var propertiPeta = {
-        //          center: new google.maps.LatLng(-8.5830695, 116.3202515),
-        //          zoom: 9,
-        //          mapTypeId: google.maps.MapTypeId.ROADMAP
-        //      };
-        //      var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
-        //      // membuat Marker
-        //      var marker = new google.maps.Marker({
-        //          position: new google.maps.LatLng(-8.5830695, 116.3202515),
-        //          map: peta
-        //      });
-        //  };
-    </script>
-    
-    {{-- <script>
-        $('#simpanspan').on('click',function () {
-            if ($(this).text() === 'Simpan') {
-                tambah();
-            } else {
-                edit();
+<script>
+    $(document).on('click','.edit', function () {
+        let id = $(this).attr('id')
+        // console.log(id);
+        // $('#tambah').click()
+        // $('#simpanspan').text('Update')
+        // $('#myModalLabel1').text('Detail Aduan')
+        $.ajax({
+            url : "{{route('complaint.edit')}}",
+            type : 'post',
+            data : {
+                id : id,
+                _token : "{{csrf_token()}}"
+            },
+            success: function (res) {
+                $("#det_status").empty();
+                // initialize();
+                // $('#id').val(res.data.id)
+                console.log(res.data);
+                $('#caption').text(res.data.caption_id)
+                $('#det_deskripsi').text(res.data.description)
+                $('#det_latitude').text(res.data.latitude)
+                $('#det_longitude').text(res.data.longitude)
+                $('#det_alamat').text(res.data.district)
+                if(res.data.status == 'PENDING'){
+                    $('#det_status').append( "<span id='span_a' class='badge bg-danger'>PENDING</span>" )
+                }else if (res.data.status == 'DITERIMA'){
+                    $('#det_status').append( "<span id='span_a' class='badge bg-warning'>DITERIMA</span>" )
+                }else if(res.data.status == 'DIKERJAKAN'){
+                    $('#det_status').append( "<span id='span_a' class='badge bg-primary'>DIKERJAKAN</span>" )
+                }else(
+                    $('#det_status').append( "<span id='span_a' class='badge bg-success'>SELESAI</span>" )
+                )
+                //map render
+                const uluru = { lat: parseFloat( res.data.latitude ), lng: parseFloat( res.data.longitude ) };
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 18,
+                    center: uluru,
+                });
+                const marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map,
+                });
             }
-        });
-
-        $(document).on('click','#btnTambah', function () {
-            $('#simpanspan').text('Simpan')
-            $('#myModalLabel1').text('Tambah Caption')
-        });
-
-        $(document).on('click','.edit', function () {
-            let id = $(this).attr('id')
-            $('#tambah').click()
-            $('#simpanspan').text('Update')
-            $('#myModalLabel1').text('Edit Caption')
-            $.ajax({
-                url : "{{route('caption.edit')}}",
-                type : 'post',
-                data : {
-                    id : id,
-                    _token : "{{csrf_token()}}"
-                },
-                success: function (res) {
-                    $('#id').val(res.data.id)
-                    console.log(res.data);
-                    $('#caption').val(res.data.caption)
-
-                }
-            })
         })
+    })
 
-        function tambah() {
-            $.ajax({
-                url : "{{route('caption.store')}}",
-                type : "post",
-                data : {
-                    caption : $('#caption').val(),
-                    "_token" : "{{csrf_token()}}"
-                },
-                success : function (res) {
-                    console.log(res);
-                    alert(res.text)
-                    $('#tutup').click()
-                    $('#tabel1').DataTable().ajax.reload()
-                    $('#caption').val(null)
-                },
-                error : function (xhr) {
-                    alert(xhr.responJson.text)
-                }
-            })
-        }
+    // function initialize() {
+    //      var propertiPeta = {
+    //          center: new google.maps.LatLng(-8.5830695, 116.3202515),
+    //          zoom: 9,
+    //          mapTypeId: google.maps.MapTypeId.ROADMAP
+    //      };
+    //      var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+    //      // membuat Marker
+    //      var marker = new google.maps.Marker({
+    //          position: new google.maps.LatLng(-8.5830695, 116.3202515),
+    //          map: peta
+    //      });
+    //  };
+</script>
 
-        function edit(){
-            $.ajax({
-                url : "{{route('caption.update')}}",
-                type : "post",
-                data : {
-                    id : $('#id').val(),
-                    caption : $('#caption').val(),
-                    "_token" : "{{csrf_token()}}"
-                },
-                success : function (res) {
-                    console.log(res);
-                    alert(res.text)
-                    $('#tutup').click()
-                    $('#tabel1').DataTable().ajax.reload()
-                    $('#caption').val(null)
-                    $('#simpanspan').text("Simpan")
-                },
-                error : function (xhr) {
-                    alert(xhr.responJson.text)
-                }
-            }) 
-        }
-
-        $(document).on('click','.hapus', function () {
-            let id = $(this).attr('id')
-            $.ajax({
-                url : "{{route('caption.delete')}}",
-                type : 'post',
-                data: {
-                    id: id,
-                    "_token" : "{{csrf_token()}}"
-                },
-                success: function (params) {
-                    alert(params.text)
-                    $('#tabel1').DataTable().ajax.reload()
-                }
-            })
-        })
-    </script> --}}
 </body>
 </html>

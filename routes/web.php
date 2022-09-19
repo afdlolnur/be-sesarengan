@@ -84,3 +84,6 @@ Route::post('article.update', [ArticleController::class, 'update'])->name('artic
 Route::post('article.delete', [ArticleController::class, 'delete'])->name('article.delete');
 
 //CRUD COMPLAINT
+Route::get('complaint.data', [ComplaintController::class, 'data'])->name('complaint.data');
+Route::get('complaint', [ComplaintController::class, 'index'])->name('complaint');
+Route::post('complaint.edit', [ComplaintController::class, 'edit'])->name('complaint.edit');
