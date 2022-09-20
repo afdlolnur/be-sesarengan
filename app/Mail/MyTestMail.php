@@ -30,7 +30,7 @@ class MyTestMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Sesarengan')
+        return $this->subject('noreply')
                     ->view('emails.myTestMail');
     }
 }

@@ -84,7 +84,10 @@ Route::prefix('dashboard')
         //CRUD COMPLAINT
         Route::get('complaint.data', [ComplaintController::class, 'data'])->name('complaint.data');
         Route::get('complaint', [ComplaintController::class, 'index'])->name('complaint');
-        Route::post('complaint.edit', [ComplaintController::class, 'edit'])->name('complaint.edit');   
+        Route::post('complaint.edit', [ComplaintController::class, 'edit'])->name('complaint.edit');
+        Route::post('complaint.editStatus', [ComplaintController::class, 'editStatus'])->name('complaint.editStatus');
+        Route::post('complaint.updateStatus', [ComplaintController::class, 'updateStatus'])->name('complaint.updateStatus');
+
     });
 
      

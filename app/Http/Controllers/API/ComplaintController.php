@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
@@ -23,6 +23,7 @@ class ComplaintController extends Controller
             // 'picture_path' => 'required'
          ]);
          
+        $current_date_time = Carbon::now()->toDateTimeString();
 
          $complaint = Complaint::create([
             'user_id' => $request->user_id,
@@ -41,6 +42,8 @@ class ComplaintController extends Controller
             'is_public' => $request->is_public,
             'is_anon' => $request->is_anon,
             'caption_id' => $request->caption_id,
+            'pending_at' => $current_date_time,
+            'pending_pic' => "Masyarakat"
          ]);
 
         //  if ($request->file('file')){

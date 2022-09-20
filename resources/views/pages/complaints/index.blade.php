@@ -7,6 +7,70 @@ SESARENGAN
 @push('addon-style')
     <link rel="stylesheet" type="text/css" href="{{ asset('dist/assets/css/pages/datatablescustom.css')}}">
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ6WK6_iZ6ANbmW-gieuvb3tcJc53TfyM"></script>
+
+    <style>
+        body{margin-top:20px;}
+        .timeline-steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .timeline-steps .timeline-step {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin: 1rem
+        }
+
+        @media (min-width:768px) {
+            .timeline-steps .timeline-step:not(:last-child):after {
+                content: "";
+                display: block;
+                border-top: .25rem dotted #16a085;
+                width: 3.46rem;
+                position: absolute;
+                left: 7.5rem;
+                top: .3125rem
+            }
+            .timeline-steps .timeline-step:not(:first-child):before {
+                content: "";
+                display: block;
+                border-top: .25rem dotted #16a085;
+                width: 3.8125rem;
+                position: absolute;
+                right: 7.5rem;
+                top: .3125rem
+            }
+        }
+
+        .timeline-steps .timeline-content {
+            width: 10rem;
+            text-align: center
+        }
+
+        .timeline-steps .timeline-content .inner-circle {
+            border-radius: 1.5rem;
+            height: 1rem;
+            width: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1abc9c;
+        }
+
+        .timeline-steps .timeline-content .inner-circle:before {
+            content: "";
+            background-color: #1abc9c;
+            display: inline-block;
+            height: 3rem;
+            width: 3rem;
+            min-width: 3rem;
+            border-radius: 6.25rem;
+            opacity: .5
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -48,6 +112,7 @@ SESARENGAN
                                         <th>Foto</th>
                                         <th>Lokasi</th>
                                         <th>Status</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -140,13 +205,8 @@ SESARENGAN
                                             <div class="col-lg-2">
                                                 <h6>Status</h6>
                                             </div>
-                                            <div id="det_status" class="col-md-6">
+                                            <div id="det_status" class="col-md-10">
                                             </div>
-                                            {{-- <div class="col-md-4">
-                                                <button type="button" class="btn btn-primary" id="bt-edit-status">
-                                                    <span class="d-none d-sm-block">Ubah Status</span>
-                                                </button>
-                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -157,16 +217,110 @@ SESARENGAN
                                 <div id="map" style="height: 400px;"></div>
                             </div>
                         </div>
+                        {{-- <div class="row">
+                            <div class="container" style="margin-top: 20px">                      
+                                <div class="row text-center justify-content-center mb-5">
+                                    <div class="col-xl-6 col-lg-8">
+                                        <h5 class="font-weight-bold">Detail Aduan</h5>
+                                    </div>
+                                </div>
+                                <div class="row">                                   
+                                    <div class="col">
+                                        <div class="timeline-steps aos-init aos-animate" data-aos="fade-up">
+                                            <div class="timeline-step">
+                                                <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2003">
+                                                    <div class="inner-circle"></div>
+                                                    <p class="h6 mt-3 mb-1">2003</p>
+                                                    <p class="h6 text-muted mb-0 mb-lg-0">Favland Founded</p>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-step">
+                                                <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2004">
+                                                    <div class="inner-circle"></div>
+                                                    <p class="h6 mt-3 mb-1">2004</p>
+                                                    <p class="h6 text-muted mb-0 mb-lg-0">Launched Trello</p>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-step">
+                                                <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2005">
+                                                    <div class="inner-circle"></div>
+                                                    <p class="h6 mt-3 mb-1">2005</p>
+                                                    <p class="h6 text-muted mb-0 mb-lg-0">Launched Messanger</p>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-step">
+                                                <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2010">
+                                                    <div class="inner-circle"></div>
+                                                    <p class="h6 mt-3 mb-1">2010</p>
+                                                    <p class="h6 text-muted mb-0 mb-lg-0">Open New Branch</p>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-step mb-0">
+                                                <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2020">
+                                                    <div class="inner-circle"></div>
+                                                    <p class="h6 mt-3 mb-1">2020</p>
+                                                    <p class="h6 text-muted mb-0 mb-lg-0">In Fortune 500</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
                     </div>
-                    <div class="modal-footer" style="margin-top: 20px">
+                    <div class="modal-footer" style="margin-top: 20px">                    
                         <button type="button" class="btn btn-dark" data-bs-dismiss="modal" id="tutup">
                             <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Tutup</span>
                         </button>
-                        {{-- <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal" id="simpan">
-                            <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block" id="simpanspan">Simpan</span>
-                        </button> --}}
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="modal fade text-left" id="default2" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel1">Update Status</h5>
+                        <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <h6>Status</h6>
+                                <fieldset class="form-group">
+                                    <select class="form-select" name="selectStatus" id="selectStatus">
+                                        
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <h6>Petugas</h6>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="petugas" placeholder="Petugas">
+                                </div>
+                            </div>
+                            <input type="hidden" id="id" name="id">
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top: 20px">                    
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" id="tutup">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Tutup</span>
+                        </button>
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="update-status">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Simpan</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -218,7 +372,8 @@ SESARENGAN
                                 return '<span class="badge bg-success">'+ data +'</span>';
                             } // return "<img src=\"http://netizens.afdlolnur.id/storage/" + data + "\" height=\"50\"/>";
                         }
-                    }
+                    },
+                    {data: 'editstatus', name: 'editstatus'},
                 ]
             })
         }
@@ -274,6 +429,68 @@ SESARENGAN
         })
     </script>
     <script>
+        $('#update-status').on('click',function () {
+            editStatus()
+        });
 
+
+        $(document).on('click','.edit-status', function () {
+            let id = $(this).attr('id')
+        
+            $.ajax({
+                url : "{{route('complaint.editStatus')}}",
+                type : 'post',
+                data : {
+                    id : id,
+                    _token : "{{csrf_token()}}"
+                },
+                success: function (res) {
+                    $('#id').val(res.data.id)
+                    $("#selectStatus").empty();
+                    console.log(res)
+                    if(res.data.status == 'PENDING'){
+                        $('#selectStatus').append( "<option value='DITERIMA'>DITERIMA</option>" )
+                        $('#selectStatus').append( "<option value='DIKERJAKAN'>DIKERJAKAN</option>" )
+                        $('#selectStatus').append( "<option value='SELESAI'>SELESAI</option>" )
+                    } else if (res.data.status == 'DITERIMA'){
+                        $('#selectStatus').append( "<option value='DITERIMA' disabled style='background-color: #aeaeae'>DITERIMA</option>" )
+                        $('#selectStatus').append( "<option value='DIKERJAKAN'>DIKERJAKAN</option>" )
+                        $('#selectStatus').append( "<option value='SELESAI'>SELESAI</option>" )
+                    } else if (res.data.status == 'DIKERJAKAN'){
+                        $('#selectStatus').append( "<option value='DITERIMA' disabled style='background-color: #aeaeae'>DITERIMA</option>" )
+                        $('#selectStatus').append( "<option value='DIKERJAKAN' disabled style='background-color: #aeaeae'>DIKERJAKAN</option>" )
+                        $('#selectStatus').append( "<option value='SELESAI'>SELESAI</option>" )
+                    } else {
+                        $('#selectStatus').append( "<option value='DITERIMA' disabled style='background-color: #aeaeae'>DITERIMA</option>" )
+                        $('#selectStatus').append( "<option value='DIKERJAKAN' disabled style='background-color: #aeaeae'>DIKERJAKAN</option>" )
+                        $('#selectStatus').append( "<option value='SELESAI' disabled style='background-color: #aeaeae'>SELESAI</option>" )
+                    }
+                }
+            })
+        })
+
+        function editStatus(){
+            console.log($('#petugas').val(),);
+            $.ajax({
+                url : "{{route('complaint.updateStatus')}}",
+                type : "post",
+                data : {
+                    id : $('#id').val(),
+                    status : $('#selectStatus').val(),
+                    petugas : $('#petugas').val(),
+                    "_token" : "{{csrf_token()}}"
+                },
+                success : function (res) {
+                    console.log(res);
+                    alert(res.text)
+                    $('#tutup').click()
+                    $('#tabel2').DataTable().ajax.reload()
+                    $('#petugas').val(null)
+                },
+                error : function (xhr) {
+                    alert(xhr.responJson.text)
+                }
+            }) 
+        }
     </script>
 @endpush

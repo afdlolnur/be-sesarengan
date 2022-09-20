@@ -26,7 +26,7 @@
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" id="email" type="email" name="email" :value="old('email')" class="form-control form-control-xl" placeholder="Email">
                             <div class="form-control-icon">
-                                <i class="bi bi-person"></i>
+                                <i class="bi bi-envelope"></i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">

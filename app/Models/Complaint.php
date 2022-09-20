@@ -26,8 +26,13 @@ class Complaint extends Model
         'caption_id',
         'status',
         'pending_at',
-        'time'
-
+        'pending_pic',
+        'diterima_at',
+        'diterima_pic',
+        'dikerjakan_at',
+        'dikerjakan_pic',
+        'selesai_at',
+        'selesai_pic'
     ];
 
     public function user()
