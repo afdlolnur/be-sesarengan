@@ -11,7 +11,7 @@ SESARENGAN
 
 @section('content')
     {{-- main-start --}}
-    <div id="main">
+    <div id="main" data-aos="fade-left">
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
                 <i class="bi bi-justify fs-3"></i>
@@ -89,8 +89,7 @@ SESARENGAN
                             <div class="col-md-12">
                                 <h4 class="card-title" id="caption">Caption</h4>
                             </div>
-                        </div>
-                        
+                        </div>        
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="carousel-item active">
@@ -141,8 +140,13 @@ SESARENGAN
                                             <div class="col-lg-2">
                                                 <h6>Status</h6>
                                             </div>
-                                            <div id="det_status" class="col-md-10">
+                                            <div id="det_status" class="col-md-6">
                                             </div>
+                                            {{-- <div class="col-md-4">
+                                                <button type="button" class="btn btn-primary" id="bt-edit-status">
+                                                    <span class="d-none d-sm-block">Ubah Status</span>
+                                                </button>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -268,5 +272,8 @@ SESARENGAN
                 }
             })
         })
+    </script>
+    <script>
+
     </script>
 @endpush

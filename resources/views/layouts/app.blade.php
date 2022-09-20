@@ -6,17 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Sesarengan</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('dist/assets/css/main/app.css')}}">
     <link rel="stylesheet" href="{{ asset('dist/assets/css/main/app-dark.css')}}">
     <link rel="shortcut icon" href="{{ asset('dist/assets/images/logo/favicon.svg')}}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('dist/assets/images/logo/favicon.png')}}" type="image/png">
-    <link rel="stylesheet" href="{{ asset('dist/assets/css/shared/iconly.css')}}">
     
     @stack('addon-style')    
   </head>
   <body>
     <div id="app">
-        <div id="sidebar" class="active">
+        <div id="sidebar" class="active" data-aos="fade-right">
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
@@ -138,6 +138,11 @@
     <script src="{{ asset('dist/assets/js/app.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
     @stack('addon-script')
   </body>
 </html>
