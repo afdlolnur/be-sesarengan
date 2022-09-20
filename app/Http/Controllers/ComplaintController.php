@@ -113,7 +113,7 @@ class ComplaintController extends Controller
     public function edit(Request $request)
     {
         $id = $request->id;
-        $complaint = Complaint::find($id);
+        $complaint = Complaint::with(['user','caption'])->find($id);
         return response()->json(['data' => $complaint]);
     }
 
